@@ -1,9 +1,6 @@
 import random
 from PIL import Image
-from collections import Counter
 from bs4 import BeautifulSoup
-import os
-import shutil
 import cairosvg
 import itertools
 import math
@@ -24,34 +21,6 @@ def smallerHex(bigHex):
 
     return smaller
 
-def generateName(t1,t2):
-    if "(" in t1:
-        p_temp = t1.split("(")
-        t1 = p_temp[1].replace(")", "") + " " + p_temp[0]
-
-    if "(" in t2:
-        p_temp = t2.split("(")
-        t2 = p_temp[1].replace(")", "") + " " + p_temp[0]
-
-    if "," in t1:
-        p_temp = t1.split(",")
-        t1 = p_temp[1] + " " + p_temp[0]
-
-    if "," in t2:
-        p_temp = t2.split(",")
-        t2 = p_temp[1] + " " + p_temp[0]
-
-    if len(t2.split()) > 1:
-        name = (" ".join(t2.split()[:-1]) + " " + t1.split()[-1])
-
-    elif  len(t1.split()) > 1:
-        name = (" ".join(t1.split()[:-1]) + " " + t2.split()[-1])
-    else:
-        name =  NameJoiner(t1,t2).join()
-
-    if t1 == t2:
-        name = t1 + " 2"
-    return name
 def downloadLogo(filename,url):
     r = requests.get(url,headers=header)
     cairosvg.svg2png(bytestring=r.text,write_to=f'{filename.lower()}.png')
