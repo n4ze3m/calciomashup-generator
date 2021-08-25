@@ -1,0 +1,2 @@
+# calciomashup-generator
+yes
